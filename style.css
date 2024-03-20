@@ -1,0 +1,102 @@
+/* Styles de base pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #eee;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style pour la bannière en haut de page */
+.banner {
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.banner h1 a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.banner h1 a:hover {
+    color: #007bff;
+}
+
+/* Styles pour le titre "Ajouter une carte" */
+h1 {
+    margin-top: 40px;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Styles pour le champ de texte et le bouton */
+input[type="text"],
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #eee;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#bod{
+    padding-left: 60px;
+}
+
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    overflow: auto; 
+}
+
+.modal-content {
+    background-color: #333; 
+    margin: 15% auto; 
+    padding: 20px;
+    border-radius: 10px; 
+    width: 80%;
+    color: #eee; 
+}
+
+
+.close {
+    color: #aaa; 
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.close:hover,
+.close:focus {
+    color: #fff; 
+    text-decoration: none;
+}
+
+.popUpAdd {
+    display:  flex;
+    justify-content: space-around;
+}
