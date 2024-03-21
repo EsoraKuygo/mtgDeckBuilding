@@ -100,3 +100,13 @@ button:hover {
     display:  flex;
     justify-content: space-around;
 }
+
+#invdisplay{
+display: flex;
+justify-content: center;
+}
+
+#block{
+display: flex;
+justify-content: center;
+}
