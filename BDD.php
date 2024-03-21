@@ -6,7 +6,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $servername = "localhost"; 
 $username = "root"; 
 $password = ""; 
-$dbname = "carteposseder"; 
+$dbname = "cardesora"; 
 
 // Connexion à la base de données MySQL
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -21,8 +21,10 @@ $couleur = $conn->real_escape_string($data['colors']);
 $type = $conn->real_escape_string($data['type']);
 $setName = $conn->real_escape_string($data['setName']);
 
+error_log("Données de la carte : " . $name . ", " . $imageUrl . ", " . $couleur . ", " . $type . ", " . $setName);
+
 // Requête d'insertion dans la table 'cards'
-$sql = "INSERT INTO carteposseder (name, imageUrl, couleur, type, setName) VALUES ('$name', '$imageUrl','$couleur','$type','$setName')";
+$sql = "INSERT INTO carteposseder (name, image, couleur, type, setName) VALUES ('$name', '$imageUrl','$couleur','$type','$setName')";
 
 // Exécuter la requête d'insertion
 if ($conn->query($sql) === TRUE) {
