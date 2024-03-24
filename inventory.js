@@ -17,7 +17,7 @@ function fetchInventoryData() {
                 // listItem.textContent = `Nom: ${item.name}, Type: ${item.type}, Couleurs: ${item.couleur}`;
                 const DC = document.createElement('div')
                 const desc = document.createElement('p')
-                desc.textContent = `${item.name}`
+                desc.textContent = `${item.name}` 
                 desc.style.textAlign = 'center'; 
                 desc.style.marginBottom = '10px';
                 const cardImage = document.createElement('img');
