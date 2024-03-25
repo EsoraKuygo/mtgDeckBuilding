@@ -13,8 +13,6 @@ function fetchInventoryData() {
             // Afficher les données sur la page
             data.forEach(item => {
                 // Créer des éléments HTML pour chaque élément de l'inventaire
-                // const listItem = document.createElement('div');
-                // listItem.textContent = `Nom: ${item.name}, Type: ${item.type}, Couleurs: ${item.couleur}`;
                 const DC = document.createElement('div')
                 const desc = document.createElement('p')
                 desc.textContent = `${item.name}` 

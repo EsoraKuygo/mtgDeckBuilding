@@ -1,29 +1,44 @@
-import fs from 'fs/promises';
+function addHoverEffect(element) {
+    element.addEventListener('mouseover', () => {
+        element.style.backgroundColor = 'lightgray'; // Changer la couleur de fond au survol
+        element.style.cursor = 'pointer'; // Changer le curseur de la souris
+    });
 
-// Fonction pour lire le fichier JSON
-async function readJSONFile(filePath) {
-    try {
-        const jsonData = await fs.readFile(filePath, 'utf-8');
-        return JSON.parse(jsonData);
-    } catch (error) {
-        console.error('Erreur lors de la lecture du fichier JSON:', error);
-        return null;
-    }
+    element.addEventListener('mouseout', () => {
+        element.style.backgroundColor = ''; // Retour à la couleur de fond par défaut
+    });
 }
 
-// Exemple d'utilisation
-readJSONFile('data.json')
-    .then(deckData => {
-        if (deckData) {
-            // Supposons que vous avez une section HTML avec l'ID "decks" où vous voulez afficher les titres des decks
-            const decksSection = document.getElementById('DeckAff');
-            
-            // Boucle à travers les données des decks et ajoute les titres à la section HTML
-            deckData.forEach(deck => {
-                const deckTitle = document.createElement('h2');
-                deckTitle.textContent = deck.name;
-                decksSection.appendChild(deckTitle);
+
+
+// Fonction pour récupérer et afficher les noms des decks
+function fetchDeckNames() {
+    fetch('data.json')
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('La requête Fetch a échoué');
+        })
+        .then(data => {
+            const deckNames = data.map(deck => deck.name);
+            const deckList = document.querySelector('.DeckAff');
+            deckNames.forEach(name => {
+                const deckNameElement = document.createElement('p');
+                deckNameElement.textContent = name;
+                deckNameElement.style.border = "thick";
+                deckNameElement.style.borderStyle = "double";
+                deckNameElement.style.textAlign = "center";
+                deckNameElement.style.marginLeft = "250px";
+                deckNameElement.style.marginRight = "250px";
+                addHoverEffect(deckNameElement);
+                deckList.appendChild(deckNameElement);
             });
-        }
-    })
-    .catch(error => console.error(error));
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des noms de deck:', error);
+        });
+}
+
+// Appeler la fonction pour récupérer et afficher les noms des decks
+fetchDeckNames();
