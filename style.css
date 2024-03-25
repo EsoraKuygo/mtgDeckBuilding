@@ -106,14 +106,24 @@ display: flex;
 justify-content: center;
 }
 
-#block{
-display: flex;
-justify-content: center;
-}
-
 #disclaimer {
     text-align: center; /* Centrer le texte horizontalement */
     font-size: 14px; /* Taille de la police */
     color: #666; /* Couleur du texte */
     margin: 20px 0; /* Marge extérieure pour l'espacement */
+}
+
+#present {
+    text-decoration: underline;
+}
+
+#block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Pour centrer les éléments horizontalement */
+}
+
+.card-container {
+    flex: 0 0 calc(20% - 20px); /* Calcul pour que chaque carte prenne 20% de largeur avec un espace de 20px entre les cartes */
+    margin: 10px;
 }
