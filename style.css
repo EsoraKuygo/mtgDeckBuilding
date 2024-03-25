@@ -111,3 +111,9 @@ display: flex;
 justify-content: center;
 }
 
+#disclaimer {
+    text-align: center; /* Centrer le texte horizontalement */
+    font-size: 14px; /* Taille de la police */
+    color: #666; /* Couleur du texte */
+    margin: 20px 0; /* Marge extérieure pour l'espacement */
+}
