@@ -20,6 +20,7 @@ fetchButton.addEventListener('click', () => {
             cardFieldContainer.innerHTML = '';
             data.cards.forEach(card => {
                 if (card.imageUrl) {
+                    console.log(data)
                     const cardImage = document.createElement('img');
                     cardImage.src = card.imageUrl;
                     cardImage.alt = card.name;

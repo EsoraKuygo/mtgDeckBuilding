@@ -1,35 +1,37 @@
-import fetch from "node-fetch";
-import cheerio from "cheerio";
-import fs from 'fs/promises';
-const start = document.getElementById('startSim')
-async function fetchData(url) {
-    try {
-        const response = await fetch(url);
-        const html = await response.text();
-        const cardData = getCardData(html);
-        await saveToJson(cardData);
-    } catch (error) {
-        console.error('Erreur lors de la récupération des données:', error);
-    }
-}
+const id = 'M20'
+const fetchButton = document.getElementById('startSim'); 
+const cardFieldContainer = document.getElementById('cardField');
 
-function getCardData(html) {
-    const $ = cheerio.load(html);
-    const cardData = [];
-    $("div.css-UZpTh img").each(function (index) {
-        const imageURL = $(this).attr("src").trim();
-        cardData.push({ cardNumber: index + 1, imageURL });
-    });
-    return cardData;
-}
+fetchButton.addEventListener('click', () => {
+    const apiUrl = "https://api.magicthegathering.io/v1/sets/"+ (id) +"/booster";
 
-async function saveToJson(data) {
-    try {
-        await fs.writeFile('cardData.json', JSON.stringify(data, null, 2));
-        console.log('Les données ont été sauvegardées dans cardData.json.');
-    } catch (error) {
-        console.error('Erreur lors de l\'écriture dans le fichier JSON:', error);
-    }
-}
+    fetch(apiUrl)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('La requête Fetch a échoué');
+        })
+        .then(data => {
+            cardFieldContainer.innerHTML = '';
+            data.cards.forEach(card => {
+                if (card.imageUrl) {
+                    const cardImage = document.createElement('img');
+                    cardImage.src = card.imageUrl;
+                    cardImage.alt = card.name;
+                    cardImage.style.margin = '10px';
+                    cardImage.style.height ='370px';
+                    cardImage.style.width = '265px';
+                    cardImage.addEventListener('click', () => {
+                        //todo
+                    });
+                    cardFieldContainer.appendChild(cardImage);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des données:', error);
+        });
+});
 
-fetchData("https://magic.wizards.com/en/products/outlaws-of-thunder-junction/card-image-gallery");
+

@@ -13,6 +13,7 @@ async function fetchData(url) {
             const cardsData = await fetchCardData("https://deckbox.org" + link);
             const cards = getCard(cardsData);
             deckData.push({ name, cards }); // Ajouter les données du deck dans le tableau
+            console.log("ouioui")
         }
         await fs.writeFile('data.json', JSON.stringify(deckData, null, 2)); // Écrire les données dans le fichier
     } catch (error) {
